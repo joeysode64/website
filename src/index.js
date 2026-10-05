@@ -83,7 +83,7 @@ const main = async () => {
             entryPoint: "f_main", 
             targets: [{ format }],
         },
-        primitive: { topology: "triangle-list" },
+        primitive: { topology: "triangle-strip" },
     });
     const bindGroup = device.createBindGroup({
         label: "nodesBindGroup",
@@ -152,7 +152,7 @@ const main = async () => {
 
         renderPass.setPipeline(pipeline);
         renderPass.setBindGroup(0, bindGroup);
-        renderPass.draw(6);
+        renderPass.draw(4);
 
         renderPass.end();
         device.queue.submit([encoder.finish()]);

@@ -13,9 +13,8 @@ struct VertexOut {
 
 @vertex
 fn v_main(@builtin(vertex_index) i: u32) -> VertexOut {
-    const vertices = array<vec2f, 6>(
-        vec2f(-1.0, -1.0), vec2f( 1.0, -1.0), vec2f(-1.0,  1.0),
-        vec2f(-1.0,  1.0), vec2f( 1.0, -1.0), vec2f( 1.0,  1.0),
+    const vertices = array<vec2f, 4>(
+        vec2f(-1.0, -1.0), vec2f( 1.0, -1.0), vec2f(-1.0,  1.0), vec2f( 1.0,  1.0),
     );
     let p = vertices[i];
 
