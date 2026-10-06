@@ -12,7 +12,7 @@ body {
     z-index: 0;
 }
 
-.text {
+.info {
     position: relative;
     z-index: 1;
 
@@ -25,6 +25,12 @@ body {
     margin: 0;
 
     font-family: "system-ui";
+
+    color: #113322;
+}
+
+.info svg {
+    fill: #113322;
 }
 
 .anchors {
@@ -38,4 +44,8 @@ body {
     align-items: center;
     width: 3rem;
     height: 3rem;
+}
+
+.anchors a:hover svg {
+    fill: #339966;
 }
