@@ -53,14 +53,13 @@ const main = async () => {
     const format = navigator.gpu.getPreferredCanvasFormat();
 
     const N_VERTICES = isCpu ? 4 : 20;
-    const FLOATS_PER_VERTEX = 8;
+    const FLOATS_PER_VERTEX = 4;
     const vertexData = new Float32Array(N_VERTICES * FLOATS_PER_VERTEX);
     const nodes = Array.from({ length: vertexData.length }, (_, i) => {
         const j = i * FLOATS_PER_VERTEX;
         return {
             pos: vertexData.subarray(j, j + 2),
             dst: vertexData.subarray(j + 2, j + 4),
-            color: vertexData.subarray(j + 4, j + 7),
         };
     });
     const vertexBuffer = device.createBuffer({
@@ -95,20 +94,11 @@ const main = async () => {
     });
 
     // Randomize nodes.
-    const COLORS = [
-        [1.0, 0.6, 0.8118],
-        [0.6, 0.9882, 1.0],
-        [0.6, 0.7882, 1.0],
-    ];
     for (let i = 0; i < nodes.length; i++) {
         nodes[i].pos[0] = randPos();
         nodes[i].pos[1] = randPos();
         nodes[i].dst[0] = randPos();
         nodes[i].dst[1] = randPos();
-        const COLOR = COLORS[i % COLORS.length];
-        nodes[i].color[0] = COLOR[0];
-        nodes[i].color[1] = COLOR[1];
-        nodes[i].color[2] = COLOR[2];
     }
 
     const update = () => {
