@@ -29,6 +29,10 @@ body {
     color: #113322;
 }
 
+.info h2 {
+    color: #FF2222;
+}
+
 .info svg {
     fill: #113322;
 }

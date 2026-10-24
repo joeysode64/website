@@ -1,16 +1,27 @@
+const errMsg = document.getElementById("_errMsg");
+
+/** Sets the error message to the value and throws it. */
+const throwErr = (msg) => {
+    errMsg.textContent = `WebGPU error: ${msg}`;
+    errMsg.hidden = false;
+    throw new Error(msg);
+}
+
 /** Retrieves and returns a WebGPU device. */
 const getDevice = async () => {
+    errMsg.hidden = true;
+
     if (!navigator.gpu)
-        throw new Error("WebGPU is not supported");
+        throwErr("WebGPU is not supported");
 
     const adapter = await navigator.gpu.requestAdapter({ featureLevel: "compatibility" });
     if (!adapter)
-        throw new Error("No suitable GPU found");
+        throwErr("No suitable GPU found");
     const isCpu = adapter.info.isFallbackAdapter;
 
     const device = await adapter.requestDevice();
     if (!device)
-        throw new Error("Failed to get device");
+        throwErr("Failed to get device");
 
     return { device, isCpu };
 };
